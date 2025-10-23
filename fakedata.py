@@ -163,13 +163,13 @@ def create_account(num_accounts=1):
                 print("⚠️ Skip shop type")
             
             # Submit
-            time.sleep(5)
+            time.sleep(random.uniform(10, 20))
             submit_btn = wait.until(EC.element_to_be_clickable((By.ID, "submitIdmCreateForm")))
             submit_btn.click()
             print("✅ Clicked Submit")
             
             # Wait result
-            time.sleep(5)
+            time.sleep(15)
             page_source = driver.page_source.lower()
             if any(word in page_source for word in ["welcome", "account created", "thank you", "sign in"]):
                 print(f"🎉 Account {i+1} SUCCESS: {email}")
@@ -186,9 +186,9 @@ def create_account(num_accounts=1):
         # Delay giữa accounts
         if i < num_accounts - 1:
             print("Waiting 2-3 mins before next account...")
-            time.sleep(60)
+            time.sleep(random.uniform(10, 60))
     
     driver.quit()
 
 if __name__ == "__main__":
-    create_account(5)  
+    create_account(5)  # Tạo 5 accounts
